@@ -502,6 +502,7 @@ html { scroll-behavior: smooth; }
     display:flex; align-items:flex-end; /* altta hizala */
     gap:67px; padding-left:80px; padding-right:80px;
     will-change:transform;
+    perspective:2000px;
 }
 .card{
     position:relative;
@@ -509,33 +510,56 @@ html { scroll-behavior: smooth; }
     border-radius:10px;
     overflow:visible;
     background:#111;
+    transform-style:preserve-3d;
     box-shadow:
-        0 4px 8px rgba(0,0,0,0.15),
-        0 8px 16px rgba(0,0,0,0.2),
-        0 16px 32px rgba(0,0,0,0.25),
-        0 24px 48px rgba(0,0,0,0.3);
-    transform:translateZ(0);
-    transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        0 10px 20px rgba(0,0,0,0.2),
+        0 20px 40px rgba(0,0,0,0.3),
+        0 30px 60px rgba(0,0,0,0.4),
+        0 40px 80px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+    transform:translateZ(40px) rotateX(2deg);
+    transition:all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    filter:brightness(1) contrast(1.05);
+}
+.card::before{
+    content:"";
+    position:absolute;
+    bottom:-40px;
+    left:10%;
+    right:10%;
+    height:40px;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
+    filter:blur(20px);
+    z-index:-1;
+    opacity:0.8;
+    transition:all 0.5s ease;
 }
 .card::after{
     content:"";
     position:absolute;
-    inset:-2px;
+    inset:0;
     border-radius:10px;
-    background:linear-gradient(135deg, rgba(243,171,14,0.15) 0%, transparent 60%);
+    background:linear-gradient(135deg, rgba(243,171,14,0.2) 0%, transparent 50%, rgba(243,171,14,0.1) 100%);
     opacity:0;
-    transition:opacity 0.4s ease;
+    transition:opacity 0.5s ease;
     z-index:2;
     pointer-events:none;
 }
 .card:hover{
-    transform:translateY(-12px) scale(1.03);
+    transform:translateZ(80px) translateY(-30px) rotateX(-5deg) scale(1.05);
     box-shadow:
-        0 8px 16px rgba(0,0,0,0.18),
-        0 16px 32px rgba(0,0,0,0.25),
-        0 32px 64px rgba(0,0,0,0.3),
-        0 48px 96px rgba(0,0,0,0.35),
-        0 0 0 2px rgba(243,171,14,0.3);
+        0 20px 40px rgba(0,0,0,0.25),
+        0 40px 80px rgba(0,0,0,0.35),
+        0 60px 120px rgba(0,0,0,0.45),
+        0 80px 160px rgba(0,0,0,0.55),
+        0 0 0 3px rgba(243,171,14,0.4),
+        inset 0 0 0 1px rgba(255,255,255,0.1);
+    filter:brightness(1.1) contrast(1.1);
+}
+.card:hover::before{
+    bottom:-60px;
+    opacity:1;
+    filter:blur(30px);
 }
 .card:hover::after{
     opacity:1;
