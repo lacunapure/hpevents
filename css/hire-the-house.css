@@ -235,8 +235,16 @@ html { scroll-behavior: smooth; }
     padding:80px clamp(24px, 4vw, 48px) clamp(24px, 4vw, 48px);
     align-items:center;
     justify-content:center;
+    opacity:0;
+    pointer-events:none;
 }
-#contentStack .content-panel.active{ display:flex; flex-direction:column; }
+#contentStack .content-panel.active{
+    display:flex;
+    flex-direction:column;
+    opacity:1;
+    pointer-events:auto;
+    z-index:2;
+}
 
 #contentStack{ color:#fff; font-family:Arial, sans-serif; }
 .headline{
