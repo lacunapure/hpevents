@@ -501,6 +501,17 @@ html { scroll-behavior: smooth; }
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding:20px 0 !important;
+    margin-top:-40px;
+}
+.footer img{
+    max-width:500px;
+    width:100%;
+}
+@media (max-width:768px){
+    .footer img{
+        max-width:300px;
+    }
 }
 
 
