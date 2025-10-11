@@ -241,6 +241,41 @@ if (window.gsap) {
 (function () {
     if (!window.Swiper) return;
 
+    // Animate slider section entrance
+    if (window.gsap && window.ScrollTrigger) {
+        const sliderBg = document.querySelector('.slider-bg');
+        const bigTexts = document.querySelectorAll('.big');
+
+        if (sliderBg) {
+            gsap.to(sliderBg, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: sliderBg,
+                    start: 'top 80%',
+                    once: true
+                }
+            });
+        }
+
+        if (bigTexts.length) {
+            gsap.to(bigTexts, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: sliderBg,
+                    start: 'top 70%',
+                    once: true
+                }
+            });
+        }
+    }
+
     const slidesData = [
         { w1: "boring", w2: "events", w3: "can&nbsp;&nbsp;do", w4: "one", w5: "BRAND",
             desc: "Not another cocktail bar.The house is lived-in, layered, and full of character. Already rented\n" +

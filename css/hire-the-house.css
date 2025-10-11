@@ -308,11 +308,17 @@ html { scroll-behavior: smooth; }
 :root{
     --bg:#7a180f; --line:#e0e0dc; --row-h:35px; --peek:84px; --gap:64px; --mid-ratio3:0.465116;
 }
-.slider-bg{ padding:50px 0; position:relative; background: url('../images/red_bg.jpg') no-repeat center center ;
+.slider-bg{
+    padding:50px 0;
+    position:relative;
+    background: url('../images/red_bg.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; }
+    background-size: cover;
+    opacity:0;
+    transform:translateY(60px);
+}
 .slider-bg::after{
     content:"";
     position:absolute;
@@ -340,6 +346,8 @@ html { scroll-behavior: smooth; }
 .big{
     font-family:Arial, sans-serif; font-weight:900; font-size:clamp(38px,8vw,67px);
     line-height:.8; letter-spacing:-3px; text-transform:lowercase; margin-left:10px;
+    opacity:0;
+    transform:translateY(20px);
 }
 .brand-row{ display:flex; align-items:center; justify-content:space-between; font-family: Arial, sans-serif; font-weight:900; margin-left:10px; }
 .brand-row .brand{ font-size:clamp(12px,1.4vw,16px); letter-spacing:1px; }
