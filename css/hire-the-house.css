@@ -154,8 +154,9 @@ html { scroll-behavior: smooth; }
 
 
 /* ==== HERO VIDEO ==== */
-.video-bg{ position:relative; width:100%; height:100vh; overflow:hidden; }
-.video-bg video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.video-bg{ position:relative; width:100%; height:100vh; overflow:hidden; background:#050505; }
+.video-bg video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.3s ease; }
+.video-bg video.loaded{ opacity:1; }
 .overlay-text{
     font-family:Arial, serif; font-weight:900;
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
