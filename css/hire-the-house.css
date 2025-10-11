@@ -148,7 +148,8 @@
 
 
 /* ==== GLOBAL ==== */
-html, body { margin:0; padding:0; height:100%; width:100%; }
+html, body { margin:0; padding:0; height:100%; width:100%; background:#050505; }
+body{ background:#050505 url('../images/black_bg.jpg') center top / cover fixed no-repeat; }
 html { scroll-behavior: smooth; }
 
 
@@ -206,86 +207,12 @@ html { scroll-behavior: smooth; }
 .bina-section{ position:relative;
     background: url('../images/black_bg.jpg') no-repeat center center;
     background-size: cover; }
-.bina-section::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:url('../images/altcizgi.png') repeat;
-    opacity:.18;
-    mix-blend-mode:soft-light;
-    pointer-events:none;
-    z-index:0;
-}
-.bina-section > *{ position:relative; z-index:1; }
-.image-stack{
-    position:relative;
-    width:100%;
-    max-width:760px;
-    aspect-ratio:8/10;
-    margin-inline:auto;
-    overflow:hidden;
-}
-.image-stack::before{
-    content:"";
-    position:absolute;
-    inset:-8%;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(243,171,14,.32), transparent 60%),
-        linear-gradient(165deg, rgba(0,0,0,.35), rgba(10,10,10,.78));
-    opacity:.65;
-    mix-blend-mode:screen;
-    pointer-events:none;
-    z-index:2;
-}
-.image-stack::after{
-    content:"";
-    position:absolute;
-    inset:-4%;
-    background:url('../images/altcizgi.png') repeat;
-    opacity:.22;
-    mix-blend-mode:soft-light;
-    pointer-events:none;
-    z-index:3;
-}
-.image-stack img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:none;
-    filter:drop-shadow(0 38px 68px rgba(0,0,0,.45)) saturate(1.05);
-    z-index:1;
-    transition:opacity .35s ease;
-    mix-blend-mode:screen;
-}
-#imageStack img.active{ display:block; opacity:1; }
+.image-stack{ position:relative; width:100%; max-width:760px; aspect-ratio:8/10; margin-inline:auto; }
+#imageStack img{ position:absolute; inset:0; width:auto; height:100%; display:none; mix-blend-mode: screen }
+#imageStack img.active{ display:block; }
 .sequence-frame{ display:block !important; }
 
-#contentStack{
-    position:relative;
-    z-index:1;
-    color:#fff;
-    font-family:Arial, sans-serif;
-}
-.content-stack{
-    position:relative;
-    min-height:40vh;
-    padding:clamp(24px, 4vw, 48px);
-    overflow:hidden;
-}
-.content-stack::before{
-    content:"";
-    position:absolute;
-    inset:-14% -18%;
-    background:
-        linear-gradient(140deg, rgba(243,171,14,.18), rgba(5,5,5,.82)),
-        url('../images/altcizgi.png') repeat;
-    opacity:.5;
-    mix-blend-mode:soft-light;
-    pointer-events:none;
-    z-index:0;
-}
+.content-stack{ position:relative; min-height:40vh; }
 #contentStack .content-panel{
     position:absolute;
     inset:0;
@@ -293,6 +220,8 @@ html { scroll-behavior: smooth; }
     padding:0 clamp(8px, 2vw, 24px);
 }
 #contentStack .content-panel.active{ display:block; }
+
+#contentStack{ color:#fff; font-family:Arial, sans-serif; }
 .headline{
     font-family:Arial, sans-serif; font-weight:900;
     font-size:clamp(20px,6.4vw,27px); letter-spacing:.5px; margin:0 0 5px; line-height:1.1;
