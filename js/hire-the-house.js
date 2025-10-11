@@ -246,30 +246,20 @@ if (window.gsap) {
         const sliderBg = document.querySelector('.slider-bg');
         const bigTexts = document.querySelectorAll('.big');
 
-        if (sliderBg) {
-            gsap.to(sliderBg, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: sliderBg,
-                    start: 'top 80%',
-                    once: true
-                }
-            });
-        }
-
         if (bigTexts.length) {
+            // Set initial state
+            gsap.set(bigTexts, { opacity: 0, y: 30 });
+
+            // Animate in when section comes into view
             gsap.to(bigTexts, {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
-                stagger: 0.15,
-                ease: 'power2.out',
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power3.out',
                 scrollTrigger: {
                     trigger: sliderBg,
-                    start: 'top 70%',
+                    start: 'top 85%',
                     once: true
                 }
             });
