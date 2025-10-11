@@ -345,8 +345,29 @@ html { scroll-behavior: smooth; }
 .brand-row .big{ margin-bottom:20px; margin-right:10px; }
 .content-col .desc{ max-width:520px; height:80px; font:500 12px/1.45 Arial, sans-serif;  letter-spacing:.6px; margin:0 0 22px 10px; }
 .controls{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding:10px; }
-.arrow{ width:36px; height:36px; border-radius:999px; border:1px solid var(--line); display:grid; place-items:center; cursor:pointer; user-select:none; color:#e0e0dc; }
-.arrow:active{ transform:scale(.98); }
+.arrow{
+    width:48px;
+    height:48px;
+    border-radius:999px;
+    border:2px solid var(--line);
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(8px);
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    user-select:none;
+    color:#e0e0dc;
+    font-size:24px;
+    font-weight:bold;
+    transition:all 0.2s ease;
+}
+.arrow:hover{
+    background:#f3ab0e;
+    border-color:#f3ab0e;
+    color:#000;
+    transform:scale(1.05);
+}
+.arrow:active{ transform:scale(.95); }
 .rule-spacer{ flex:1; height:1px; background:var(--line); }
 .btn-enquire{ background:#f3ab0e; color:#000; border:0; border-radius:999px; font-family:Arial, sans-serif; font-weight:900; padding:10px 18px; text-decoration:none; }
 .btn-enquire:hover{ filter:brightness(.92); color:#000; }
