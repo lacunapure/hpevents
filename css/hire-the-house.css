@@ -234,13 +234,12 @@ html { scroll-behavior: smooth; }
     align-items:center;
     justify-content:center;
     padding-top:80px;
-    overflow:hidden;
 }
 #contentStack .content-panel{
     position:absolute;
     inset:0;
     display:none;
-    padding:80px clamp(24px, 4vw, 48px) clamp(24px, 4vw, 48px);
+    padding:80px clamp(20px, 3vw, 40px) clamp(24px, 4vw, 48px);
     align-items:center;
     justify-content:center;
     opacity:0;
@@ -259,7 +258,7 @@ html { scroll-behavior: smooth; }
 #contentStack{ color:#fff; font-family:Arial, sans-serif; }
 .headline{
     font-family:Arial, sans-serif; font-weight:900;
-    font-size:clamp(30px,9.6vw,40px); letter-spacing:.5px; margin:0 0 5px; line-height:1.1;
+    font-size:clamp(26px,7.5vw,44px); letter-spacing:.5px; margin:0 0 5px; line-height:1.1;
     white-space:nowrap;
 }
 .headline .num{ margin-right:8px; }
@@ -270,25 +269,11 @@ html { scroll-behavior: smooth; }
     color:#000;
     font-family:Arial, sans-serif;
     font-weight:900;
-    font-size:clamp(24px,7vw,40px);
-    padding:6px 20px;
+    font-size:clamp(26px,7.5vw,44px);
+    padding:6px 24px;
     margin:0 0 30px;
     line-height:1.2;
     white-space:nowrap;
-    max-width:100%;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-@media (min-width:768px){
-    .pill{
-        font-size:clamp(30px,9.6vw,40px);
-        padding:8px 30px;
-    }
-}
-@media (min-width:576px) and (max-width:991px){
-    .pill{
-        font-size:clamp(20px,6vw,32px);
-    }
 }
 
 
@@ -303,11 +288,6 @@ html { scroll-behavior: smooth; }
 
 /* Masaüstü (768px ve üzeri) */
 @media (min-width:768px) {
-    .pill {
-        padding:8px 30px;
-        margin: 0 0 30px;
-    }
-
     .desc {
         margin-bottom: 1.5rem;
         line-height:1.65;
