@@ -149,7 +149,20 @@
 
 /* ==== GLOBAL ==== */
 html, body { margin:0; padding:0; height:100%; width:100%; background:#050505; }
-body{ background:#050505 url('../images/black_bg.jpg') center top / cover fixed no-repeat; }
+body{
+    position:relative;
+    background:#050505 url('../images/black_bg.jpg') center top / cover fixed no-repeat;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url('../images/altcizgi.png') repeat;
+    opacity:.18;
+    mix-blend-mode:soft-light;
+    pointer-events:none;
+    z-index:0;
+}
 html { scroll-behavior: smooth; }
 
 
