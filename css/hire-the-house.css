@@ -517,15 +517,18 @@ html { scroll-behavior: smooth; }
     -o-background-size: cover;
     background-size: cover;
     padding:20px 0 !important;
-    margin-top:-40px;
+    margin-top:-80px;
 }
 .footer img{
-    max-width:500px;
+    max-width:clamp(400px, 50vw, 700px);
     width:100%;
 }
 @media (max-width:768px){
+    .footer{
+        margin-top:-60px;
+    }
     .footer img{
-        max-width:300px;
+        max-width:clamp(280px, 70vw, 450px);
     }
 }
 
