@@ -260,11 +260,17 @@ html { scroll-behavior: smooth; }
     color:#000;
     font-family:Arial, sans-serif;
     font-weight:900;
-    font-size:clamp(30px,9.6vw,40px);
-    padding:8px 30px;
+    font-size:clamp(24px,7vw,40px);
+    padding:6px 20px;
     margin:0 0 30px;
     line-height:1.2;
     white-space:nowrap;
+}
+@media (min-width:768px){
+    .pill{
+        font-size:clamp(30px,9.6vw,40px);
+        padding:8px 30px;
+    }
 }
 
 
