@@ -222,7 +222,7 @@ html { scroll-behavior: smooth; }
     background-size: cover;
     min-height:100vh; }
 .bina-section .row{ min-height:100vh; }
-.image-stack{ position:relative; width:100%; max-width:760px; aspect-ratio:8/10; margin-inline:auto; }
+.image-stack{ position:relative; width:100%; max-width:1140px; aspect-ratio:8/10; margin-inline:auto; }
 #imageStack img{ position:absolute; inset:0; width:auto; height:100%; display:none; mix-blend-mode: screen }
 #imageStack img.active{ display:block; }
 .sequence-frame{ display:block !important; }
@@ -241,7 +241,7 @@ html { scroll-behavior: smooth; }
 #contentStack{ color:#fff; font-family:Arial, sans-serif; }
 .headline{
     font-family:Arial, sans-serif; font-weight:900;
-    font-size:clamp(20px,6.4vw,27px); letter-spacing:.5px; margin:0 0 5px; line-height:1.1;
+    font-size:clamp(30px,9.6vw,40px); letter-spacing:.5px; margin:0 0 5px; line-height:1.1;
 }
 .headline .num{ margin-right:8px; }
 /* Mobil (varsayılan) */
@@ -251,38 +251,38 @@ html { scroll-behavior: smooth; }
     color:#000;
     font-family:Arial, sans-serif;
     font-weight:900;
-    font-size:clamp(20px,6.4vw,27px);
-    padding:5px 20px;
-    margin:0 0 20px;
+    font-size:clamp(30px,9.6vw,40px);
+    padding:8px 30px;
+    margin:0 0 30px;
     line-height:1.2;
 }
 
 
 .desc {
     font-weight:100;
-    font-size:1rem;
+    font-size:1.5rem;
     line-height:1.6;
-    margin:0 0 20px;
+    margin:0 0 30px;
     color:#fff;
 }
 
 /* Masaüstü (768px ve üzeri) */
 @media (min-width:768px) {
     .pill {
-        padding:5px 20px;
-        margin: 0 0 20px;
+        padding:8px 30px;
+        margin: 0 0 30px;
     }
 
     .desc {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         line-height:1.6;
-        font-size:inherit;
+        font-size:1.5rem;
     }
 }
 .btn-enquire{
     display:inline-block; background:#f3ab0e; color:#000;
     font-family:Arial, sans-serif; font-weight:900; text-decoration:none;
-    padding:5px 18px; border:0;
+    padding:8px 27px; border:0; font-size:1.125rem;
 }
 .btn-enquire:hover{ filter:brightness(.9); color:#000; }
 
