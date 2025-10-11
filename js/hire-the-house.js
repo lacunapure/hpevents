@@ -268,6 +268,23 @@ if (window.gsap) {
     const renderByIndex = (i) => {
         const s = slidesData[i % slidesData.length];
         if (!s) return;
+
+        // Animate text elements with subtle fade and slide
+        const elements = [el.w1, el.w2, el.w3, el.w4, el.w5, el.desc].filter(Boolean);
+
+        if (window.gsap) {
+            gsap.fromTo(elements,
+                { opacity: 0, y: 10 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    stagger: 0.05
+                }
+            );
+        }
+
         if (el.w1) el.w1.innerHTML = s.w1;
         if (el.w2) el.w2.innerHTML = s.w2;
         if (el.w3) el.w3.innerHTML = s.w3;
@@ -282,7 +299,22 @@ if (window.gsap) {
         slidesPerView: 1,
         centeredSlides: false,
         spaceBetween: 0,
-        allowTouchMove: true
+        allowTouchMove: true,
+        effect: 'slide',
+        on: {
+            slideChangeTransitionStart: function() {
+                if (window.gsap) {
+                    const activeSlide = this.slides[this.activeIndex];
+                    const img = activeSlide?.querySelector('img');
+                    if (img) {
+                        gsap.fromTo(img,
+                            { scale: 0.95, opacity: 0.7 },
+                            { scale: 1, opacity: 1, duration: 0.65, ease: 'power2.out' }
+                        );
+                    }
+                }
+            }
+        }
     });
 
     renderByIndex(visualSwiper.realIndex || 0);
