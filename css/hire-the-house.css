@@ -255,15 +255,17 @@ html { scroll-behavior: smooth; }
     padding:8px 30px;
     margin:0 0 30px;
     line-height:1.2;
+    white-space:nowrap;
 }
 
 
 .desc {
-    font-weight:100;
-    font-size:1.5rem;
-    line-height:1.6;
+    font-weight:300;
+    font-size:1.125rem;
+    line-height:1.65;
     margin:0 0 30px;
-    color:#fff;
+    color:rgba(255,255,255,0.92);
+    letter-spacing:0.3px;
 }
 
 /* Masaüstü (768px ve üzeri) */
@@ -275,8 +277,8 @@ html { scroll-behavior: smooth; }
 
     .desc {
         margin-bottom: 1.5rem;
-        line-height:1.6;
-        font-size:1.5rem;
+        line-height:1.65;
+        font-size:1.125rem;
     }
 }
 .btn-enquire{
