@@ -242,6 +242,7 @@ html { scroll-behavior: smooth; }
 .headline{
     font-family:Arial, sans-serif; font-weight:900;
     font-size:clamp(30px,9.6vw,40px); letter-spacing:.5px; margin:0 0 5px; line-height:1.1;
+    white-space:nowrap;
 }
 .headline .num{ margin-right:8px; }
 /* Mobil (varsayılan) */
