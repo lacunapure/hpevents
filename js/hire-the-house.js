@@ -31,14 +31,6 @@ if (window.gsap) {
             }
         };
 
-        // Fade in video when it's ready
-        const showVideo = () => {
-            video.classList.add('loaded');
-        };
-
-        video.addEventListener('loadeddata', showVideo);
-        video.addEventListener('canplay', showVideo);
-
         ['loadeddata', 'canplay', 'playing', 'stalled', 'suspend'].forEach(evt => {
             video.addEventListener(evt, ensurePlaying);
         });
