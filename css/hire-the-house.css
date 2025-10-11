@@ -278,7 +278,17 @@ html { scroll-behavior: smooth; }
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; }
-.lined-slider{ color:#e0e0dc; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
+.slider-bg::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url('../images/altcizgi.png') repeat;
+    opacity:.18;
+    mix-blend-mode:soft-light;
+    pointer-events:none;
+    z-index:1;
+}
+.lined-slider{ position:relative; color:#e0e0dc; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; z-index:2; }
 .lined-slider .grid{ position:relative; display:grid; grid-template-columns:var(--peek) var(--gap) 1fr 1.15fr var(--peek); min-height:640px; }
 .vline{ position:absolute; top:0; bottom:0; width:0; border-left:1px solid var(--line); z-index:10; pointer-events:none; }
 .v1{ left:-2px; } .v2{ left:var(--peek); } .v3{ left:calc(var(--peek) + var(--gap)); }
