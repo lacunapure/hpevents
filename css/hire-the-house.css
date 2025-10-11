@@ -219,20 +219,24 @@ html { scroll-behavior: smooth; }
 /* ==== BİNA BÖLÜMÜ ==== */
 .bina-section{ position:relative;
     background: url('../images/black_bg.jpg') no-repeat center center;
-    background-size: cover; }
+    background-size: cover;
+    min-height:100vh; }
+.bina-section .row{ min-height:100vh; }
 .image-stack{ position:relative; width:100%; max-width:760px; aspect-ratio:8/10; margin-inline:auto; }
 #imageStack img{ position:absolute; inset:0; width:auto; height:100%; display:none; mix-blend-mode: screen }
 #imageStack img.active{ display:block; }
 .sequence-frame{ display:block !important; }
 
-.content-stack{ position:relative; min-height:40vh; padding-top:80px; }
+.content-stack{ position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; padding-top:80px; }
 #contentStack .content-panel{
     position:absolute;
     inset:0;
     display:none;
     padding:80px clamp(24px, 4vw, 48px) clamp(24px, 4vw, 48px);
+    align-items:center;
+    justify-content:center;
 }
-#contentStack .content-panel.active{ display:block; }
+#contentStack .content-panel.active{ display:flex; flex-direction:column; }
 
 #contentStack{ color:#fff; font-family:Arial, sans-serif; }
 .headline{
