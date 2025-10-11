@@ -234,6 +234,7 @@ html { scroll-behavior: smooth; }
     align-items:center;
     justify-content:center;
     padding-top:80px;
+    isolation:isolate;
 }
 #contentStack .content-panel{
     position:absolute;
@@ -245,6 +246,8 @@ html { scroll-behavior: smooth; }
     opacity:0;
     pointer-events:none;
     visibility:hidden;
+    background:transparent;
+    z-index:1;
 }
 #contentStack .content-panel.active{
     display:flex;
@@ -252,7 +255,7 @@ html { scroll-behavior: smooth; }
     opacity:1;
     pointer-events:auto;
     visibility:visible;
-    z-index:2;
+    z-index:10;
 }
 
 #contentStack{ color:#fff; font-family:Arial, sans-serif; }
