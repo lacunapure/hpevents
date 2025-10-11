@@ -416,13 +416,30 @@ if (window.gsap) {
 
         const anim = gsap.fromTo(track, { x: startX }, { x: -travel, ease: 'none' });
 
+        // Text slide animation
+        const textSlides = section.querySelectorAll('.text-slide');
+        const textCount = textSlides.length;
+
         const st = ScrollTrigger.create({
             trigger: section,
             start: 'top top',
             end: '+=' + Math.max(travel, 1),
             pin: true,
             scrub: true,
-            animation: anim
+            animation: anim,
+            onUpdate: (self) => {
+                if (textCount > 0) {
+                    const progress = self.progress;
+                    const currentIndex = Math.min(Math.floor(progress * textCount), textCount - 1);
+                    textSlides.forEach((slide, idx) => {
+                        if (idx === currentIndex) {
+                            slide.classList.add('active');
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+                }
+            }
         });
 
         triggers.set(section, st);
