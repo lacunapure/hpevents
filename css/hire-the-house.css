@@ -227,7 +227,15 @@ html { scroll-behavior: smooth; }
 #imageStack img.active{ display:block; }
 .sequence-frame{ display:block !important; }
 
-.content-stack{ position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; padding-top:80px; }
+.content-stack{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-top:80px;
+    overflow:hidden;
+}
 #contentStack .content-panel{
     position:absolute;
     inset:0;
@@ -237,12 +245,14 @@ html { scroll-behavior: smooth; }
     justify-content:center;
     opacity:0;
     pointer-events:none;
+    visibility:hidden;
 }
 #contentStack .content-panel.active{
     display:flex;
     flex-direction:column;
     opacity:1;
     pointer-events:auto;
+    visibility:visible;
     z-index:2;
 }
 
@@ -265,11 +275,19 @@ html { scroll-behavior: smooth; }
     margin:0 0 30px;
     line-height:1.2;
     white-space:nowrap;
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 @media (min-width:768px){
     .pill{
         font-size:clamp(30px,9.6vw,40px);
         padding:8px 30px;
+    }
+}
+@media (min-width:576px) and (max-width:991px){
+    .pill{
+        font-size:clamp(20px,6vw,32px);
     }
 }
 
