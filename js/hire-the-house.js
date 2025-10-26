@@ -241,10 +241,24 @@ if (window.gsap) {
 (function () {
     if (!window.Swiper) return;
 
-    // Animate slider section entrance
+    // Animate slider section entrance and snap into place
     if (window.gsap && window.ScrollTrigger) {
         const sliderBg = document.querySelector('.slider-bg');
         const bigTexts = document.querySelectorAll('.big');
+
+        if (sliderBg) {
+            // Snap section into place when it reaches viewport
+            ScrollTrigger.create({
+                trigger: sliderBg,
+                start: 'top top',
+                end: 'bottom bottom',
+                snap: {
+                    snapTo: 'labelsDirectional',
+                    duration: { min: 0.2, max: 0.6 },
+                    ease: 'power1.inOut'
+                }
+            });
+        }
 
         if (bigTexts.length) {
             // Set initial state
