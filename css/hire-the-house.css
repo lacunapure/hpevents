@@ -180,6 +180,18 @@ html { scroll-behavior: smooth; }
 /* ==== NAV ==== */
 .navbar{ position:absolute; top:0; left:0; right:0; z-index:10; }
 .nav-link{ font-size:16px !important; }
+.navbar-toggler:focus{ box-shadow:none !important; }
+#mobilMenu{
+    max-height:80vh;
+    overflow-y:auto;
+}
+#mobilMenu.show{
+    animation:slideDown 0.3s ease;
+}
+@keyframes slideDown{
+    from{ opacity:0; transform:translateY(-20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
 .dropdown-toggle::after{ margin-left:0.5em; }
 .dropdown-menu{
     background:rgba(0,0,0,0.95) !important;
@@ -789,3 +801,25 @@ select.custom-select::-ms-expand { display: none; }
 }
 
 /* Swipe hint visible on all screen sizes, fades naturally */
+
+/* ==== MOBILE FIXES ==== */
+@media (max-width:991px){
+    /* Fix video section header overlap */
+    .video-bg{
+        margin-top:-60px;
+    }
+    
+    /* Add padding after banner before bina section */
+    #binaSection{
+        padding-top:80px !important;
+    }
+    
+    /* Move text box closer to rotating image */
+    .bina-section .content-panel{
+        transform:translateY(-50px) !important;
+    }
+    
+    .bina-section .image-stack{
+        margin-bottom:-50px !important;
+    }
+}

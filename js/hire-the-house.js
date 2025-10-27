@@ -1,3 +1,31 @@
+/* ===== Mobile Menu Auto-Collapse ===== */
+(function() {
+    const mobileMenu = document.getElementById('mobilMenu');
+    const navToggler = document.querySelector('.navbar-toggler');
+
+    if (mobileMenu && navToggler) {
+        // Close menu on scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (Math.abs(currentScroll - lastScroll) > 50 && mobileMenu.classList.contains('show')) {
+                navToggler.click();
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Close menu when clicking any link
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('show')) {
+                    navToggler.click();
+                }
+            });
+        });
+    }
+})();
+
 /* ===== jQuery Marquee (logo band) ===== */
 $(function () {
     $('.logo-marquee').marquee({
@@ -246,24 +274,10 @@ if (window.gsap) {
 (function () {
     if (!window.Swiper) return;
 
-    // Animate slider section entrance and snap into place
+    // Animate slider section entrance
     if (window.gsap && window.ScrollTrigger) {
         const sliderBg = document.querySelector('.slider-bg');
         const bigTexts = document.querySelectorAll('.big');
-
-        if (sliderBg) {
-            // Snap section into place when it reaches viewport
-            ScrollTrigger.create({
-                trigger: sliderBg,
-                start: 'top top',
-                end: 'bottom bottom',
-                snap: {
-                    snapTo: 'labelsDirectional',
-                    duration: { min: 0.2, max: 0.6 },
-                    ease: 'power1.inOut'
-                }
-            });
-        }
 
         if (bigTexts.length) {
             // Set initial state
