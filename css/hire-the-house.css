@@ -804,22 +804,15 @@ select.custom-select::-ms-expand { display: none; }
 
 /* ==== MOBILE FIXES ==== */
 @media (max-width:991px){
-    /* Fix video section header overlap */
+    /* Ensure video section stays full height and covers properly */
     .video-bg{
-        margin-top:-60px;
+        position:relative;
+        z-index:1;
     }
-    
-    /* Add padding after banner before bina section */
+
+    /* Ensure bina section doesn't show through */
     #binaSection{
-        padding-top:80px !important;
-    }
-    
-    /* Move text box closer to rotating image */
-    .bina-section .content-panel{
-        transform:translateY(-50px) !important;
-    }
-    
-    .bina-section .image-stack{
-        margin-bottom:-50px !important;
+        position:relative;
+        z-index:0;
     }
 }
