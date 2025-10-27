@@ -167,8 +167,15 @@ html { scroll-behavior: smooth; }
 
 
 /* ==== HERO VIDEO ==== */
-.video-bg{ position:relative; width:100%; height:100vh; overflow:hidden; background:#050505; }
-.video-bg video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.video-bg{ position:relative; width:100%; height:100vh; overflow:hidden; background:#000; }
+.video-bg video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+.video-bg::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:#000;
+    z-index:0;
+}
 .overlay-text{
     font-family:Arial, serif; font-weight:900;
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
@@ -806,19 +813,32 @@ select.custom-select::-ms-expand { display: none; }
 @media (max-width:991px){
     /* Fix video section to ensure it fills viewport properly */
     .video-bg{
-        min-height:100vh;
-        height:100vh;
-        background:#000;
+        min-height:100vh !important;
+        height:100vh !important;
+        background:#000 !important;
+        position:relative;
+        z-index:1;
+    }
+
+    .video-bg video{
+        z-index:1 !important;
     }
 
     /* Ensure navbar doesn't push video down */
     .navbar{
         position:fixed;
+        z-index:100;
     }
 
     /* Make sure overlay text is visible */
     .overlay-text{
-        z-index:10;
+        z-index:20 !important;
+        position:absolute;
+    }
+
+    /* Prevent bina section from showing */
+    #binaSection{
+        margin-top:0;
         position:relative;
     }
 }
