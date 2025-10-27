@@ -205,7 +205,7 @@ html { scroll-behavior: smooth; }
     left:0;
     right:0;
     width:100%;
-    z-index:60;
+    z-index:9999;
 }
 .logo-band-placeholder{
     display:none;

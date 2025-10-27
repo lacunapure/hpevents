@@ -205,7 +205,12 @@ if (window.gsap) {
             end: () => sequenceTrigger.end,
             onEnter: pinBanner,
             onEnterBack: pinBanner,
-            onLeave: unpinBanner,
+            onLeave: () => {
+                // Keep banner fixed at top after bina section
+                if (!pinned) return;
+                banner.classList.add('logo-band--shadow');
+                // Don't unpin - stay fixed at top permanently
+            },
             onLeaveBack: unpinBanner
         });
 
