@@ -804,15 +804,21 @@ select.custom-select::-ms-expand { display: none; }
 
 /* ==== MOBILE FIXES ==== */
 @media (max-width:991px){
-    /* Ensure video section stays full height and covers properly */
+    /* Fix video section to ensure it fills viewport properly */
     .video-bg{
-        position:relative;
-        z-index:1;
+        min-height:100vh;
+        height:100vh;
+        background:#000;
     }
 
-    /* Ensure bina section doesn't show through */
-    #binaSection{
+    /* Ensure navbar doesn't push video down */
+    .navbar{
+        position:fixed;
+    }
+
+    /* Make sure overlay text is visible */
+    .overlay-text{
+        z-index:10;
         position:relative;
-        z-index:0;
     }
 }
