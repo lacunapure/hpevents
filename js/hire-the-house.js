@@ -374,24 +374,23 @@ if (window.gsap) {
     });
 })();
 
-/* ===== STEEL / FORM: keys.png section’a gelince soldan içeri kay ===== */
+/* ===== STEEL / FORM: keys.png section'a gelince soldan içeri kay ===== */
 (function () {
-    document.addEventListener('DOMContentLoaded', function () {
-        const section = document.getElementById('steelSection');
-        const img = section?.querySelector('.keys-img');
-        if (!section || !img) return;
+    const section = document.getElementById('steelSection');
+    const img = document.querySelector('.keys-img');
 
-        const io = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    img.classList.add('is-in');
-                    obs.unobserve(section);
-                }
-            });
-        }, { threshold: 0.5 });
+    if (!section || !img) return;
 
-        io.observe(section);
-    });
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                img.classList.add('is-in');
+                io.unobserve(section);
+            }
+        });
+    }, { threshold: 0.2, rootMargin: '0px' });
+
+    io.observe(section);
 })();
 
 
