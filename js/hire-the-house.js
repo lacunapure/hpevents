@@ -44,31 +44,54 @@ if (window.gsap) {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ===== Hero video playback guard ===== */
+/* ===== Hero video playback guard - Enhanced for mobile ===== */
 (function () {
-    document.addEventListener('DOMContentLoaded', function () {
-        const video = document.querySelector('.video-bg video');
-        if (!video) return;
+    const video = document.querySelector('.video-bg video');
+    if (!video) return;
 
-        const ensurePlaying = () => {
-            if (video.paused || video.readyState < 2) {
-                const playPromise = video.play();
-                if (playPromise && typeof playPromise.then === 'function') {
-                    playPromise.catch(() => {});
-                }
+    // Force video attributes for mobile
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('muted', 'true');
+    video.setAttribute('autoplay', 'true');
+    video.muted = true;
+    video.playsInline = true;
+
+    const ensurePlaying = () => {
+        if (video.paused) {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.then === 'function') {
+                playPromise.then(() => {
+                    console.log('Video playing');
+                }).catch((error) => {
+                    console.log('Video play failed:', error);
+                    // Retry after a short delay
+                    setTimeout(() => {
+                        video.play().catch(() => {});
+                    }, 500);
+                });
             }
-        };
+        }
+    };
 
-        ['loadeddata', 'canplay', 'playing', 'stalled', 'suspend'].forEach(evt => {
-            video.addEventListener(evt, ensurePlaying);
-        });
-
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) ensurePlaying();
-        });
-
-        ensurePlaying();
+    // Try to play on multiple events
+    ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(evt => {
+        video.addEventListener(evt, ensurePlaying);
     });
+
+    // Play when page becomes visible
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) ensurePlaying();
+    });
+
+    // Try to play on user interaction (for mobile)
+    ['touchstart', 'click', 'scroll'].forEach(evt => {
+        document.addEventListener(evt, ensurePlaying, { once: true });
+    });
+
+    // Initial play attempt
+    setTimeout(ensurePlaying, 100);
+    setTimeout(ensurePlaying, 500);
+    setTimeout(ensurePlaying, 1000);
 })();
 
 /* ===== Bina sekansı: 104 karelik scroll kontrollü animasyon ===== */
