@@ -46,52 +46,68 @@ if (window.gsap) {
 
 /* ===== Hero video playback guard - Enhanced for mobile ===== */
 (function () {
-    const video = document.querySelector('.video-bg video');
-    if (!video) return;
-
-    // Force video attributes for mobile
-    video.setAttribute('playsinline', 'true');
-    video.setAttribute('muted', 'true');
-    video.setAttribute('autoplay', 'true');
-    video.muted = true;
-    video.playsInline = true;
-
-    const ensurePlaying = () => {
-        if (video.paused) {
-            const playPromise = video.play();
-            if (playPromise && typeof playPromise.then === 'function') {
-                playPromise.then(() => {
-                    console.log('Video playing');
-                }).catch((error) => {
-                    console.log('Video play failed:', error);
-                    // Retry after a short delay
-                    setTimeout(() => {
-                        video.play().catch(() => {});
-                    }, 500);
-                });
-            }
+    function initVideo() {
+        const video = document.querySelector('.video-bg video');
+        if (!video) {
+            // Video not found yet, try again soon
+            setTimeout(initVideo, 50);
+            return;
         }
-    };
 
-    // Try to play on multiple events
-    ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(evt => {
-        video.addEventListener(evt, ensurePlaying);
-    });
+        // Force video attributes for mobile - use empty string for boolean attributes
+        video.setAttribute('playsinline', '');
+        video.setAttribute('muted', '');
+        video.setAttribute('autoplay', '');
+        video.muted = true;
+        video.playsInline = true;
+        video.defaultMuted = true;
 
-    // Play when page becomes visible
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) ensurePlaying();
-    });
+        const ensurePlaying = () => {
+            if (video.paused) {
+                video.muted = true; // Ensure muted every time
+                const playPromise = video.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.then(() => {
+                        console.log('✓ Video playing');
+                    }).catch((error) => {
+                        console.log('✗ Video play failed:', error.message);
+                        // Retry
+                        setTimeout(() => {
+                            video.muted = true;
+                            video.play().catch(() => {});
+                        }, 500);
+                    });
+                }
+            }
+        };
 
-    // Try to play on user interaction (for mobile)
-    ['touchstart', 'click', 'scroll'].forEach(evt => {
-        document.addEventListener(evt, ensurePlaying, { once: true });
-    });
+        // Try to play on multiple video events
+        ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'playing'].forEach(evt => {
+            video.addEventListener(evt, ensurePlaying);
+        });
 
-    // Initial play attempt
-    setTimeout(ensurePlaying, 100);
-    setTimeout(ensurePlaying, 500);
-    setTimeout(ensurePlaying, 1000);
+        // Play when page becomes visible
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) ensurePlaying();
+        });
+
+        // Try to play on ANY user interaction (critical for iOS)
+        ['touchstart', 'touchend', 'click', 'scroll', 'mousemove'].forEach(evt => {
+            document.addEventListener(evt, ensurePlaying);
+        });
+
+        // Very aggressive initial play attempts
+        ensurePlaying();
+        setTimeout(ensurePlaying, 50);
+        setTimeout(ensurePlaying, 100);
+        setTimeout(ensurePlaying, 200);
+        setTimeout(ensurePlaying, 500);
+        setTimeout(ensurePlaying, 1000);
+        setTimeout(ensurePlaying, 2000);
+    }
+
+    // Start immediately - don't wait for anything
+    initVideo();
 })();
 
 /* ===== Bina sekansı: 104 karelik scroll kontrollü animasyon ===== */
