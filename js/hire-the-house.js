@@ -44,69 +44,83 @@ if (window.gsap) {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ===== Hero video playback guard - Enhanced for mobile ===== */
+/* ===== Hero video playback with fallback play button ===== */
 (function () {
     function initVideo() {
-        const video = document.querySelector('.video-bg video');
+        const video = document.getElementById('heroVideo');
+        const playOverlay = document.getElementById('videoPlayOverlay');
+        const playBtn = document.getElementById('videoPlayBtn');
+
         if (!video) {
-            // Video not found yet, try again soon
             setTimeout(initVideo, 50);
             return;
         }
 
-        // Force video attributes for mobile - use empty string for boolean attributes
         video.setAttribute('playsinline', '');
         video.setAttribute('muted', '');
-        video.setAttribute('autoplay', '');
         video.muted = true;
         video.playsInline = true;
         video.defaultMuted = true;
 
-        const ensurePlaying = () => {
-            if (video.paused) {
-                video.muted = true; // Ensure muted every time
-                const playPromise = video.play();
-                if (playPromise && typeof playPromise.then === 'function') {
-                    playPromise.then(() => {
-                        console.log('✓ Video playing');
-                    }).catch((error) => {
-                        console.log('✗ Video play failed:', error.message);
-                        // Retry
-                        setTimeout(() => {
-                            video.muted = true;
-                            video.play().catch(() => {});
-                        }, 500);
-                    });
-                }
+        let videoPlaying = false;
+
+        const hidePlayButton = () => {
+            if (playOverlay) playOverlay.style.display = 'none';
+        };
+
+        const showPlayButton = () => {
+            if (playOverlay && !videoPlaying) {
+                playOverlay.style.display = 'flex';
             }
         };
 
-        // Try to play on multiple video events
-        ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'playing'].forEach(evt => {
-            video.addEventListener(evt, ensurePlaying);
+        const playVideo = () => {
+            video.muted = true;
+            const playPromise = video.play();
+            if (playPromise) {
+                playPromise.then(() => {
+                    console.log('✓ Video playing');
+                    videoPlaying = true;
+                    hidePlayButton();
+                }).catch((error) => {
+                    console.log('✗ Autoplay blocked, showing play button');
+                    showPlayButton();
+                });
+            }
+        };
+
+        // Play button click
+        if (playBtn) {
+            playBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                playVideo();
+            });
+        }
+
+        // Hide button when video starts
+        video.addEventListener('playing', () => {
+            videoPlaying = true;
+            hidePlayButton();
         });
 
-        // Play when page becomes visible
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) ensurePlaying();
+        // Try autoplay
+        video.addEventListener('canplaythrough', playVideo, { once: true });
+
+        // Try on first touch/click
+        ['touchstart', 'click'].forEach(evt => {
+            document.addEventListener(evt, () => {
+                if (!videoPlaying) playVideo();
+            }, { once: true });
         });
 
-        // Try to play on ANY user interaction (critical for iOS)
-        ['touchstart', 'touchend', 'click', 'scroll', 'mousemove'].forEach(evt => {
-            document.addEventListener(evt, ensurePlaying);
-        });
+        // Show button if not playing after 2 seconds
+        setTimeout(() => {
+            if (!videoPlaying && video.paused) showPlayButton();
+        }, 2000);
 
-        // Very aggressive initial play attempts
-        ensurePlaying();
-        setTimeout(ensurePlaying, 50);
-        setTimeout(ensurePlaying, 100);
-        setTimeout(ensurePlaying, 200);
-        setTimeout(ensurePlaying, 500);
-        setTimeout(ensurePlaying, 1000);
-        setTimeout(ensurePlaying, 2000);
+        setTimeout(playVideo, 100);
     }
 
-    // Start immediately - don't wait for anything
     initVideo();
 })();
 

@@ -144,12 +144,20 @@ src="https://www.facebook.com/tr?id=2223214034686662&ev=PageView
 
 <!-- Tam ekran video -->
 <div class="video-bg">
-    <video autoplay muted loop playsinline preload="auto">
+    <video autoplay muted loop playsinline preload="metadata" id="heroVideo">
         <source src="images/video_c.mp4" type="video/mp4" />
         <source src="images/video_c.webm" type="video/webm" />
     </video>
 
-
+    <!-- Play button overlay for mobile -->
+    <div class="video-play-overlay" id="videoPlayOverlay" style="display:none;">
+        <button class="video-play-btn" id="videoPlayBtn">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="38" stroke="#f3ab0e" stroke-width="4"/>
+                <path d="M32 24L56 40L32 56V24Z" fill="#f3ab0e"/>
+            </svg>
+        </button>
+    </div>
 
     <div class="overlay-text">
         MAKE <br /> YOURSELF <br /> AT <u>HOME</u>

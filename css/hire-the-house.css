@@ -176,6 +176,28 @@ html { scroll-behavior: smooth; }
     background:#000;
     z-index:0;
 }
+.video-play-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.3);
+    z-index:15;
+}
+.video-play-btn{
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    transition:transform 0.3s ease;
+}
+.video-play-btn:hover{
+    transform:scale(1.1);
+}
+.video-play-btn:active{
+    transform:scale(0.95);
+}
 .overlay-text{
     font-family:Arial, serif; font-weight:900;
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
